@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Databricks output
+*.dbc
+*.done
+
+# CSV data exports
+*.csv
+
+# VS Code
+.vscode/
+
+# OneDrive temporary files
+~$*
