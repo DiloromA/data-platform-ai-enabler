@@ -24,7 +24,13 @@ This repo is built around a core idea: the platform builder's decisions on gover
 - In Databricks, go to Workspace > Import and upload the `.dbc` file.
 - The entire demo (notebooks, queries, data) will be imported and ready to run.
 
-**Option 2: Manual setup**
+**Option 2: Clone repo in Databricks (easiest for testing)**
+- In Databricks, go to Repos > Create > Git.
+- Clone `https://github.com/yourusername/data-platform-ai-enabler.git`.
+- Run notebooks in order: 00_data_generation.ipynb, then 01-06.
+- SQL scripts can be run via %sql in notebooks or SQL editor.
+
+**Option 3: Manual setup**
 1. In Databricks, create the catalog and schema if needed: `CREATE CATALOG IF NOT EXISTS adtech_demo; CREATE SCHEMA IF NOT EXISTS adtech_demo.adtech_platform; CREATE VOLUME adtech_demo.adtech_platform.generated_datasets;`
 2. Run `databricks/00_setup.sql` to create the demo tables in schema `adtech_demo.adtech_platform`.
 3. Run `notebooks/00_data_generation.ipynb` to generate synthetic data and save CSVs to volume `/Volumes/adtech_demo/adtech_platform/generated_datasets/`.
