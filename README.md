@@ -7,7 +7,7 @@ This repository supports a Women in Data talk and a broader article on Databrick
 ## What this repo contains
 
 - `notebooks/` — Sequential Databricks notebooks for platform foundations, business semantics, data quality, lineage, and AI/BI payoff.
-- `databricks/` — SQL setup scripts and reusable Databricks asset definitions.
+- `databricks/` — workspace export instructions and optional reference assets.
 - `setup/` — environment and setup guidance for Databricks free tier.
 - `docs/` — architecture and demo checklist to support the talk.
 - `article/` — industry storytelling and reference material for media, sports, and entertainment.
@@ -19,25 +19,21 @@ This repo is built around a core idea: the platform builder's decisions on gover
 
 ## Quickstart
 
-**Option 1: One-click import (recommended for talks)**
-- Download `databricks/demo_export.dbc` from the repo.
-- In Databricks, go to Workspace > Import and upload the `.dbc` file.
-- The entire demo (notebooks, queries, data) will be imported and ready to run.
+**Option 1: Workspace export instructions**
+- Use `databricks/workspace_export_instructions.md` as a guide to create a one-click Databricks workspace export if you want an importable asset for the talk.
+- If you do not have a `.dbc` file, proceed with Option 2.
 
 **Option 2: Clone repo in Databricks (easiest for testing)**
 - In Databricks, go to Repos > Create > Git.
 - Clone `https://github.com/yourusername/data-platform-ai-enabler.git`.
-- Run notebooks in order: 00_data_generation.ipynb, then 01-06.
-- SQL scripts can be run via %sql in notebooks or SQL editor.
+- Run notebooks in order: `00_data_generation.ipynb` (creates catalog, schema, volume, and loads data), then `01-06`.
+- No separate SQL scripts are required; the notebooks are self-contained.
 
 **Option 3: Manual setup**
-1. In Databricks, create the catalog and schema if needed: `CREATE CATALOG IF NOT EXISTS adtech_demo; CREATE SCHEMA IF NOT EXISTS adtech_demo.adtech_platform; CREATE VOLUME adtech_demo.adtech_platform.generated_datasets;`
-2. Run `databricks/00_setup.sql` to create the demo tables in schema `adtech_demo.adtech_platform`.
-3. Run `notebooks/00_data_generation.ipynb` to generate synthetic data and save CSVs to volume `/Volumes/adtech_demo/adtech_platform/generated_datasets/`.
-4. Run `databricks/03_ingest_sample_data.sql` to load CSVs into tables.
-5. Run `databricks/01_business_semantics.sql` to create semantic views.
-6. Run `databricks/02_quality_lineage.sql` to add quality checks and lineage views.
-7. Execute the demo notebooks in `notebooks/` (01-06) to explore the platform story.
+1. In Databricks, create the catalog and schema if needed:
+   `CREATE CATALOG IF NOT EXISTS adtech_demo; CREATE SCHEMA IF NOT EXISTS adtech_demo.adtech_platform; CREATE VOLUME adtech_demo.adtech_platform.generated_datasets;`
+2. Run `notebooks/00_data_generation.ipynb` to create the required catalog/schema/volume, generate synthetic data, save CSVs to volume `/dbfs/Volumes/adtech_demo/adtech_platform/generated_datasets/`, and load the tables.
+3. Execute notebooks `01-06` in order to explore the platform story.
 
 ## Target audience
 

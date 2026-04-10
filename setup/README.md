@@ -14,15 +14,9 @@ This guide helps you prepare the Databricks environment to run the demo.
    - **Schema**: `adtech_platform`
    - **Volume**: `generated_datasets` (path: `/Volumes/adtech_demo/adtech_platform/generated_datasets/`)
 
-2. **Run table creation**: Execute `databricks/00_setup.sql` to create tables in `adtech_demo.adtech_platform`.
+2. **Generate data and load tables**: Run `notebooks/00_data_generation.ipynb` to create the catalog/schema/volume, generate synthetic ad tech data, save CSVs to the volume, and load the tables.
 
-3. **Generate data**: Run `notebooks/00_data_generation.ipynb` to create synthetic ad tech data and save CSVs to the volume.
-
-4. **Ingest data**: Run `databricks/03_ingest_sample_data.sql` to load CSVs into tables.
-
-5. **Create views**: Run `databricks/01_business_semantics.sql` for semantic views, then `databricks/02_quality_lineage.sql` for quality and lineage.
-
-6. **Run demo**: Execute notebooks 01-06 in `notebooks/` to view the curated flow.
+3. **Run demo**: Execute notebooks `01-06` in `notebooks/` to view the curated flow.
 
 ## Databricks free tier notes
 
